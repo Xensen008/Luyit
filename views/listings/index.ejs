@@ -1,0 +1,78 @@
+<% layout('/layouts/boilerplate') -%>
+
+  <body>
+    <!-- <h3 class="mt-2">All Listings</h3> -->
+    <div class="container-fluid px-lg-2 px-md-3 px-sm-4">
+      <div class="filter-panel d-flex flex-row align-items-center p-2 position-sticky top-0">
+        <div class="text-center m-2">
+          <i class="fa-solid fa-fire fa-2x"></i>
+          <p>Trending</p>
+        </div>
+        <div class="text-center m-2">
+          <i class="fa-solid fa-tents fa-2x"></i>
+          <p>Camping</p>
+        </div>
+        <div class="text-center m-2">
+          <i class="fa-solid fa-archway fa-2x"></i>
+          <p>Design</p>
+        </div>
+        <div class="text-center m-2">
+          <i class="fa-solid fa-house-chimney fa-2x"></i>
+          <p>Villa</p>
+        </div>
+        <div class="text-center m-2">
+          <i class="fa-solid fa-building fa-2x"></i>
+          <p>Apartment</p>
+        </div>
+        <div class="text-center m-2">
+          <i class="fa-solid fa-tree-city fa-2x"></i>
+          <p>Luxe</p>
+        </div>
+        <div class="text-center m-2">
+          <i class="fa-solid fa-building fa-2x"></i>
+          <p>Amazing View</p>
+        </div>
+        <div class="text-center m-2">
+          <i class="fa-solid fa-cable-car fa-2x"></i>
+          <p>Countryside</p>
+        </div>
+        <div class="text-center m-2">
+          <i class="fa-solid fa-umbrella-beach fa-2x"></i>
+          <p>Beachfront</p>
+        </div>
+        <div class="ms-auto me-3">
+          <button class="btn btn-outline-secondary"><i class="fa-solid fa-filter"></i> Filter</button>
+        </div>
+        <div class="rounded-pill bg-light d-flex align-items-center justify-content-center p-2">
+          <p class="mb-0 me-2">Before GST</p>
+          <div class="form-check form-switch mb-0">
+            <input class="form-check-input" type="checkbox" id="toggleButton">
+          </div>
+        </div>
+      </div>
+
+
+      <div class="row row-cols-lg-4 row-cols-md-2 row-cols-sm-1 g-4">
+        <% for(let listing of allListing) {%>
+          <a class="listing-link" href="/listings/<%= listing._id %>">
+            <div class="card col">
+              <img src="<%=listing.image.url%>" class="card-img-top" alt="<%= listing.image.filename %>"
+                style="height: 15rem" />
+              <div class="card-img-overlay"></div>
+              <div class="card-body">
+                <h5 class="card-title">
+                  <%= listing.title %>
+                </h5>
+                <p class="card-text">
+                  &#8377; <%= listing.price.toLocaleString("en-IN") %>/night
+                </p>
+                <p class="starability-result" data-rating="<%= listing.avgRating.toFixed(0) %>">
+                  Average rating: <%= listing.avgRating.toFixed(2) %>
+                </p>
+              </div>
+            </div>
+          </a>
+          <% } %>
+      </div>
+    </div>
+  </body>
