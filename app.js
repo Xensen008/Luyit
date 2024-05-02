@@ -13,14 +13,29 @@ const listingRouter =require("./routes/listing.route.js");
 const reviewRouter  =require("./routes/review.route.js");
 const authRouter = require("./routes/auth.route.js");
 const session= require("express-session");
+const MongoStore=require("connect-mongo")
 const flash = require("connect-flash");
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
 const User = require("./models/user.model.js");
 const MONGO_URL =  process.env.MONGO_URL;
 
+const store = MongoStore.create({
+  mongoUrl:MONGO_URL,
+  crypto:{
+    secret:"thisshouldbeabettersecret!"
+  },
+  touchAfter: 24*60*60
+
+})
+
+store.on("error",function(e){
+  console.log("Session store error",e)
+})
+
 
 const sessionConfig = {
+  store:store,
   secret:"thisshouldbeabettersecret!",
   resave:false,
   saveUninitialized:true,
@@ -30,7 +45,6 @@ const sessionConfig = {
     maxAge:1000*60*60*24*7
   }
 }
-
 
 
 app.set("view engine", "ejs");
