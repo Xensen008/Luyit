@@ -6,8 +6,7 @@ Welcome to Luyit, this is a place where users can list there villa and house man
 **Screenshots:**
 web view
 ![website](./web%20pic.jpg)
-mobile view
-![mobile](./mobile%20pic.jpg) 
+
 
 **Table of Contents:**
 1. Project Structure
